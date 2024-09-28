@@ -1,107 +1,79 @@
-/* General styling */
 body {
-    font-family: 'Arial', sans-serif;
-    background: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.directory {
-    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-.folder img {
-    width: 100px;
-    margin-bottom: 20px;
-}
-
-.folder-button {
-    background-color: #ff4c4c;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 10px 25px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.folder-button:hover {
-    background-color: #ff6666;
-}
-
-/* Main Content */
-.main-content {
-    display: none;
-    text-align: center;
-    padding: 40px;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.container {
     max-width: 600px;
     margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Clock styling */
-.clock {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+header {
+    text-align: center;
 }
 
-.watch-face {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    border: 8px solid #333;
-    border-radius: 50%;
-    background-color: white;
-    margin: 20px 0;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-}
-
-.hand {
-    position: absolute;
-    width: 50%;
-    height: 4px;
-    background-color: #333;
-    top: 50%;
-    transform-origin: 100%;
-    transform: rotate(90deg);
-    transition: all 0.05s;
-}
-
-.hour-hand {
-    width: 40%;
-    height: 6px;
-}
-
-.minute-hand {
-    height: 4px;
-}
-
-.second-hand {
-    background-color: red;
-    height: 2px;
-}
-
-.center {
-    width: 10px;
-    height: 10px;
-    background-color: #333;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.digital-clock {
-    font-size: 1.5rem;
-    color: #333;
+.date-time {
+    font-size: 1.2rem;
     margin-top: 10px;
+    color: #555;
+}
+
+.climate-section {
+    margin: 20px 0;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.climate-section img {
+    width: 60px;
+    vertical-align: middle;
+}
+
+.message-section,
+.bible-section {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.message-section h2,
+.bible-section h2 {
+    font-size: 1.5rem;
+}
+
+.message-section button,
+.bible-section button {
+    margin: 5px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.message-section button:hover,
+.bible-section button:hover {
+    background-color: #0056b3;
+}
+
+#message,
+#bible-verse {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #777;
 }

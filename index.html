@@ -3,104 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morning Message for Mom</title>
+    <title>Good Morning Message</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles for the phone-shaped video container */
+        .video-container {
+            width: 250px; /* Width of the phone */
+            height: 450px; /* Height of the phone */
+            border: 16px solid #000; /* Phone border */
+            border-radius: 36px; /* Rounded corners */
+            padding: 10px; /* Padding inside the phone */
+            background-color: #f8f8f8; /* Background color of the phone */
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow for a 3D effect */
+            margin: 20px auto; /* Center the phone */
+        }
+        .video-container iframe {
+            width: 100%; /* Full width of the phone */
+            height: 100%; /* Full height of the phone */
+            border-radius: 20px; /* Rounded corners for the video */
+        }
+        /* Styles for the small image at the bottom */
+        .small-image {
+            position: absolute; /* Position it at the bottom of the phone */
+            bottom: 10px; /* Space from the bottom */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Centering adjustment */
+            width: 50px; /* Width of the small image */
+            height: auto; /* Auto height */
+            border-radius: 50%; /* Make it circular */
+            opacity: 0.7; /* Reduce opacity */
+            z-index: 1; /* Ensure it appears above the video */
+        }
+    </style>
 </head>
 <body>
-    <!-- Listing Directory Style with Creative Button -->
-    <div class="directory">
-        <h1>~ /</h1>
-        <div class="folder">
-            <img src="https://img.icons8.com/plasticine/100/000000/folder-invoices.png" alt="My_Mom folder">
-            <button class="folder-button" onclick="enterMainPage()">My_Mom</button>
-        </div>
-    </div>
+    <div class="container">
+        <header>
+            <h1>Good Morning, Mom!</h1>
+            <div class="date-time" id="date-time"></div>
+        </header>
 
-    <!-- Hidden content that will appear after clicking the folder -->
-    <div id="main-content" class="main-content" style="display: none;">
-        <div class="header">
-            <h1>Today's Blessing for Mom</h1>
-
-            <!-- Creative Clock Section -->
-            <div class="clock">
-                <div class="watch-face">
-                    <div id="hour-hand" class="hand hour-hand"></div>
-                    <div id="minute-hand" class="hand minute-hand"></div>
-                    <div id="second-hand" class="hand second-hand"></div>
-                    <div class="center"></div>
-                </div>
-                <div class="digital-clock">
-                    <p id="date-time"></p>
-                </div>
-            </div>
+        <div class="climate-section">
+            <h2>Today's Weather</h2>
+            <label for="city-select">Select a city:</label>
+            <select id="city-select" onchange="fetchWeather()">
+                <option value="Kigali">Kigali</option>
+                <option value="Nairobi">Nairobi</option>
+                <option value="Dar es Salaam">Dar es Salaam</option>
+                <option value="Kampala">Kampala</option>
+                <option value="Brussels">Brussels, Belgium</option>
+                <option value="Antwerp">Antwerp, Belgium</option>
+                <option value="Ghent">Ghent, Belgium</option>
+                <option value="Bruges">Bruges, Belgium</option>
+                <option value="Paris">Paris, France</option>
+                <option value="London">London, UK</option>
+                <option value="Amsterdam">Amsterdam, Netherlands</option>
+                <option value="Berlin">Berlin, Germany</option>
+            </select>
+            <p id="climate">Loading weather...</p>
         </div>
 
-        <!-- Message Section -->
         <div class="message-section">
-            <p id="message">Click to reveal the message in English, French, or Kinyarwanda!</p>
-            <button onclick="showMessage('en')">English Message</button>
-            <button onclick="showMessage('fr')">Message en Français</button>
-            <button onclick="showMessage('rw')">Ubutumwa mu Kinyarwanda</button>
+            <h2>Select Language for Today's Message</h2>
+            <button onclick="setLanguage('en')">English</button>
+            <button onclick="setLanguage('fr')">French</button>
+            <button onclick="setLanguage('rw')">Kinyarwanda</button>
+            <div id="message"></div>
         </div>
 
-        <!-- Bible Verse Section -->
-        <div class="bible-verse-section">
-            <h2>Bible Verse</h2>
-            <button onclick="showBibleVerse('en')">Bible Verse in English</button>
-            <button onclick="showBibleVerse('fr')">Verset Biblique en Français</button>
-            <button onclick="showBibleVerse('rw')">Umurongo w’Ijambo ry’Imana mu Kinyarwanda</button>
-            <p id="bible-verse"></p>
+        <div class="bible-section">
+            <h2>Select Language for Today's Bible Verse</h2>
+            <button onclick="setBibleVerse('en')">English</button>
+            <button onclick="setBibleVerse('fr')">French</button>
+            <button onclick="setBibleVerse('rw')">Kinyarwanda</button>
+            <div id="bible-verse"></div>
+        </div>
+
+        <div class="video-container">
+            <iframe 
+                src="https://www.youtube.com/embed/Mt00WHPftjw" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+            <!-- Small image of you -->
+            <img src="file:///D:/My_Mom/My_Mom/ISP_1183.jpg" alt="Kappy's Image" class="small-image">
+        </div>
+
+        <div class="footer">
+            <p>This message is from your son Eric.</p>
+            <p>&copy; 2024 Kappy. All rights reserved.</p>
         </div>
     </div>
 
     <script>
-        // Transition to the main content
-        function enterMainPage() {
-            document.querySelector('.directory').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-        }
-
-        // Display current date and time
-        function updateClock() {
+        // Function to display date and time
+        function updateDateTime() {
             const now = new Date();
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-            const seconds = now.getSeconds();
-
-            // Rotate the clock hands
-            const hourDegree = ((hours % 12) / 12) * 360 + (minutes / 60) * 30;
-            const minuteDegree = (minutes / 60) * 360 + (seconds / 60) * 6;
-            const secondDegree = (seconds / 60) * 360;
-
-            document.getElementById('hour-hand').style.transform = `rotate(${hourDegree}deg)`;
-            document.getElementById('minute-hand').style.transform = `rotate(${minuteDegree}deg)`;
-            document.getElementById('second-hand').style.transform = `rotate(${secondDegree}deg)`;
-
-            // Update digital time and date
-            document.getElementById('date-time').textContent = now.toLocaleString();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('date-time').innerText = now.toLocaleString('en-US', options);
         }
 
-        setInterval(updateClock, 1000);
+        // Function to fetch weather data
+        function fetchWeather() {
+            const apiKey = 'f9b337b77657514a4f7a2c2072be6c14'; // Your OpenWeather API key
+            const city = document.getElementById('city-select').value; // Get selected city
+            const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-        // Function to display messages in different languages
-        function showMessage(lang) {
-            const messages = {
-                en: "Good morning, Mom! Wishing you a day full of peace and blessings 🌸.",
-                fr: "Bonjour Maman ! Je te souhaite une journée pleine de paix et de bénédictions 🌸.",
-                rw: "Mwaramutse Mama! Nkwifurije umunsi wuzuye amahoro n'imigisha 🌸."
-            };
-            document.getElementById('message').textContent = messages[lang];
+            fetch(weatherUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const temperature = data.main.temp;
+                    const weatherDescription = data.weather[0].description;
+                    const weatherIcon = data.weather[0].icon;
+
+                    document.getElementById('climate').innerHTML = `
+                        <img src="http://openweathermap.org/img/wn/${weatherIcon}@2x.png" alt="weather-icon">
+                        <span>Temperature in ${city}: ${temperature}°C</span><br>
+                        <span>Condition: ${weatherDescription}</span>
+                    `;
+                })
+                .catch(error => {
+                    document.getElementById('climate').innerHTML = "Unable to fetch weather data.";
+                    console.error("Error fetching weather data:", error);
+                });
         }
 
-        // Function to display Bible verses in different languages
-        function showBibleVerse(lang) {
-            const bibleVerses = {
-                en: "Proverbs 31:28: 'Her children arise and call her blessed; her husband also, and he praises her.'",
-                fr: "Proverbes 31:28 : 'Ses enfants se lèvent et la disent heureuse; son mari aussi, et il la loue.'",
-                rw: "Imigani 31:28: 'Abana be barahaguruka bakamwita uhiriwe; n’umugabo we aramushima.'"
-            };
-            document.getElementById('bible-verse').textContent = bibleVerses[lang];
+        // Function to set the message based on selected language
+        function setLanguage(lang) {
+            let message = "";
+            if (lang === 'en') {
+                message = "Good Morning! Have a blessed day!";
+            } else if (lang === 'fr') {
+                message = "Bonjour! Passez une bonne journée!";
+            } else if (lang === 'rw') {
+                message = "Muraho! Umunsi mwiza!";
+            }
+            document.getElementById('message').innerText = message;
         }
+
+        // Function to set the Bible verse based on selected language
+        function setBibleVerse(lang) {
+            let verse = "";
+            if (lang === 'en') {
+                verse = "Philippians 4:13 - I can do all things through Christ who strengthens me.";
+            } else if (lang === 'fr') {
+                verse = "Philippiens 4:13 - Je peux tout par celui qui me fortifie.";
+            } else if (lang === 'rw') {
+                verse = "Abafilipi 4:13 - Nshobora byose mu wankomezaga.";
+            }
+            document.getElementById('bible-verse').innerText = verse;
+        }
+
+        // Update date and time and fetch weather on page load
+        updateDateTime();
+        fetchWeather();
+        setInterval(updateDateTime, 1000); // Update time every second
     </script>
 </body>
 </html>
