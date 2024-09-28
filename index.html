@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morning Blessings for Mom</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Home Screen -->
+    <div class="homepage">
+        <div class="content-wrapper">
+            <h1>Good Morning, Mom!</h1>
+            <p class="welcome-message">Your daily message is ready. Click below to see it!</p>
+            <button class="explore-button" onclick="enterMainPage()">See Today's Blessing</button>
+        </div>
+    </div>
+
+    <!-- Hidden Content for the Main Page (Initially Hidden) -->
+    <div id="main-content" class="main-content" style="display: none;">
+        <div class="header">
+            <h1>Today's Blessing for Mom</h1>
+            <p id="date-time"></p>
+        </div>
+        <div class="message-section">
+            <p id="message">Click to reveal the message in English or French!</p>
+            <button onclick="showMessage('en')">English Message</button>
+            <button onclick="showMessage('fr')">Message en Français</button>
+        </div>
+    </div>
+
+    <script>
+        // Transition to the main content
+        function enterMainPage() {
+            document.querySelector('.homepage').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }
+
+        // Function to display messages
+        function showMessage(lang) {
+            const messages = {
+                en: "Good morning, Mom! Wishing you a day full of peace and blessings 🌸.",
+                fr: "Bonjour Maman ! Je te souhaite une journée pleine de paix et de bénédictions 🌸."
+            };
+            document.getElementById('message').textContent = messages[lang];
+        }
+
+        // Display current date and time
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('date-time').textContent = now.toLocaleString();
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+/* Overall styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to bottom, #f9f9f9, #ff9999);
+    color: #333;
+}
+
+/* Home Screen Styling */
+.homepage {
+    text-align: center;
+}
+
+.content-wrapper {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #ff4c4c;
+    margin-bottom: 20px;
+}
+
+.welcome-message {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.explore-button {
+    background-color: #ff4c4c;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.explore-button:hover {
+    background-color: #ff6666;
+}
+
+/* Main Page Styling */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.header h1 {
+    color: #ff4c4c;
+    font-size: 2rem;
+}
+
+.message-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.message-section button {
+    background-color: #ff4c4c;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.message-section button:hover {
+    background-color: #ff6666;
+}
+
+#message {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 20px 0;
+}
