@@ -3,53 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Morning Blessings for Mom</title>
+    <title>Morning Message for Mom</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Home Screen -->
-    <div class="homepage">
-        <div class="content-wrapper">
-            <h1>Good Morning, Mom!</h1>
-            <p class="welcome-message">Your daily message is ready. Click below to see it!</p>
-            <button class="explore-button" onclick="enterMainPage()">See Today's Blessing</button>
+    <!-- Listing Directory Style with Creative Button -->
+    <div class="directory">
+        <h1>~ /</h1>
+        <div class="folder">
+            <img src="https://img.icons8.com/plasticine/100/000000/folder-invoices.png" alt="My_Mom folder">
+            <button class="folder-button" onclick="enterMainPage()">My_Mom</button>
         </div>
     </div>
 
-    <!-- Hidden Content for the Main Page (Initially Hidden) -->
+    <!-- Hidden content that will appear after clicking the folder -->
     <div id="main-content" class="main-content" style="display: none;">
         <div class="header">
             <h1>Today's Blessing for Mom</h1>
-            <p id="date-time"></p>
+
+            <!-- Creative Clock Section -->
+            <div class="clock">
+                <div class="watch-face">
+                    <div id="hour-hand" class="hand hour-hand"></div>
+                    <div id="minute-hand" class="hand minute-hand"></div>
+                    <div id="second-hand" class="hand second-hand"></div>
+                    <div class="center"></div>
+                </div>
+                <div class="digital-clock">
+                    <p id="date-time"></p>
+                </div>
+            </div>
         </div>
+
+        <!-- Message Section -->
         <div class="message-section">
-            <p id="message">Click to reveal the message in English or French!</p>
+            <p id="message">Click to reveal the message in English, French, or Kinyarwanda!</p>
             <button onclick="showMessage('en')">English Message</button>
             <button onclick="showMessage('fr')">Message en Français</button>
+            <button onclick="showMessage('rw')">Ubutumwa mu Kinyarwanda</button>
+        </div>
+
+        <!-- Bible Verse Section -->
+        <div class="bible-verse-section">
+            <h2>Bible Verse</h2>
+            <button onclick="showBibleVerse('en')">Bible Verse in English</button>
+            <button onclick="showBibleVerse('fr')">Verset Biblique en Français</button>
+            <button onclick="showBibleVerse('rw')">Umurongo w’Ijambo ry’Imana mu Kinyarwanda</button>
+            <p id="bible-verse"></p>
         </div>
     </div>
 
     <script>
         // Transition to the main content
         function enterMainPage() {
-            document.querySelector('.homepage').style.display = 'none';
+            document.querySelector('.directory').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
         }
 
-        // Function to display messages
+        // Display current date and time
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            // Rotate the clock hands
+            const hourDegree = ((hours % 12) / 12) * 360 + (minutes / 60) * 30;
+            const minuteDegree = (minutes / 60) * 360 + (seconds / 60) * 6;
+            const secondDegree = (seconds / 60) * 360;
+
+            document.getElementById('hour-hand').style.transform = `rotate(${hourDegree}deg)`;
+            document.getElementById('minute-hand').style.transform = `rotate(${minuteDegree}deg)`;
+            document.getElementById('second-hand').style.transform = `rotate(${secondDegree}deg)`;
+
+            // Update digital time and date
+            document.getElementById('date-time').textContent = now.toLocaleString();
+        }
+
+        setInterval(updateClock, 1000);
+
+        // Function to display messages in different languages
         function showMessage(lang) {
             const messages = {
                 en: "Good morning, Mom! Wishing you a day full of peace and blessings 🌸.",
-                fr: "Bonjour Maman ! Je te souhaite une journée pleine de paix et de bénédictions 🌸."
+                fr: "Bonjour Maman ! Je te souhaite une journée pleine de paix et de bénédictions 🌸.",
+                rw: "Mwaramutse Mama! Nkwifurije umunsi wuzuye amahoro n'imigisha 🌸."
             };
             document.getElementById('message').textContent = messages[lang];
         }
 
-        // Display current date and time
-        setInterval(() => {
-            const now = new Date();
-            document.getElementById('date-time').textContent = now.toLocaleString();
-        }, 1000);
+        // Function to display Bible verses in different languages
+        function showBibleVerse(lang) {
+            const bibleVerses = {
+                en: "Proverbs 31:28: 'Her children arise and call her blessed; her husband also, and he praises her.'",
+                fr: "Proverbes 31:28 : 'Ses enfants se lèvent et la disent heureuse; son mari aussi, et il la loue.'",
+                rw: "Imigani 31:28: 'Abana be barahaguruka bakamwita uhiriwe; n’umugabo we aramushima.'"
+            };
+            document.getElementById('bible-verse').textContent = bibleVerses[lang];
+        }
     </script>
 </body>
 </html>
