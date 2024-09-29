@@ -5,96 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Good Morning Message</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            text-align: center;
-            padding: 20px;
-            margin: 0;
-        }
-
-        header {
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            color: #4A90E2;
-        }
-
-        .date-time {
-            font-size: 18px;
-            margin: 10px 0;
-        }
-
-        .climate-section,
-        .message-section,
-        .bible-section {
-            margin: 20px 0;
-        }
-
-        .button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            margin: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .video-container {
-            width: 300px; /* Width of the phone */
-            height: 500px; /* Height of the phone */
-            border: 16px solid #000; /* Phone border */
-            border-radius: 36px; /* Rounded corners */
-            padding: 10px; /* Padding inside the phone */
-            background-color: #f8f8f8; /* Background color of the phone */
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow for a 3D effect */
-            margin: 20px auto; /* Center the phone */
-        }
-
-        .video-container iframe {
-            width: 100%; /* Full width of the phone */
-            height: 100%; /* Full height of the phone */
-            border-radius: 20px; /* Rounded corners for the video */
-        }
-
-        .small-image {
-            position: absolute; /* Position it at the bottom of the phone */
-            bottom: 10px; /* Space from the bottom */
-            left: 50%; /* Center horizontally */
-            transform: translateX(-50%); /* Centering adjustment */
-            width: 60px; /* Width of the small image */
-            height: auto; /* Auto height */
-            border-radius: 50%; /* Make it circular */
-            opacity: 0.7; /* Reduce opacity */
-            z-index: 1; /* Ensure it appears above the video */
-        }
-
-        .footer {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #777;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Good Morning, Mom!</h1>
+        <header class="animated-header">
+            <h1 class="glow-text">Good Morning, Mom!</h1>
             <div class="date-time" id="date-time"></div>
+            <div id="time-zone"></div>
         </header>
 
-        <div class="climate-section">
-            <h2>Today's Weather</h2>
-            <label for="city-select">Select a city:</label>
+        <!-- Rest of the HTML remains the same -->
+
+        <div class="climate-section card-effect">
+            <h2 class="section-title">Today's Weather / Météo d'aujourd'hui</h2>
+            <label for="city-select">Select a city / Choisissez une ville:</label>
             <select id="city-select" onchange="fetchWeather()">
                 <option value="Kigali">Kigali</option>
                 <option value="Nairobi">Nairobi</option>
@@ -109,33 +34,42 @@
                 <option value="Amsterdam">Amsterdam, Netherlands</option>
                 <option value="Berlin">Berlin, Germany</option>
             </select>
-            <p id="climate">Loading weather...</p>
+            <div id="climate" class="weather-display">
+                <p>Loading weather... / Chargement de la météo...</p>
+            </div>
         </div>
 
-        <div class="message-section">
-            <h2>Select Language for Today's Message</h2>
-            <button class="button" onclick="setLanguage('en')">English</button>
-            <button class="button" onclick="setLanguage('fr')">French</button>
-            <button class="button" onclick="setLanguage('rw')">Kinyarwanda</button>
-            <div id="message"></div>
+        <div class="message-section card-effect">
+            <h2 class="section-title">Today's Message</h2>
+            <div class="button-group">
+                <button class="button" onclick="setLanguage('en')">English</button>
+                <button class="button" onclick="setLanguage('fr')">French</button>
+                <button class="button" onclick="setLanguage('rw')">Kinyarwanda</button>
+            </div>
+            <div id="message" class="message-display"></div>
         </div>
 
-        <div class="bible-section">
-            <h2>Select Language for Today's Bible Verse</h2>
-            <button class="button" onclick="setBibleVerse('en')">English</button>
-            <button class="button" onclick="setBibleVerse('fr')">French</button>
-            <button class="button" onclick="setBibleVerse('rw')">Kinyarwanda</button>
-            <div id="bible-verse"></div>
+        <div class="bible-section card-effect">
+            <h2 class="section-title">Today's Bible Verse</h2>
+            <div class="button-group">
+                <button class="button" onclick="setBibleVerse('en')">English</button>
+                <button class="button" onclick="setBibleVerse('fr')">French</button>
+                <button class="button" onclick="setBibleVerse('rw')">Kinyarwanda</button>
+            </div>
+            <div id="bible-verse" class="verse-display"></div>
         </div>
 
-        <div class="video-container">
-            <iframe 
-                src="https://www.youtube.com/embed/Mt00WHPftjw" 
+        <div class="video-section card-effect">
+            <h2 class="section-title">Inspiration for Today</h2>
+            <div class="video-container">
+                <iframe 
+                src="https://www.youtube.com/embed/WsSZv-oAXe0" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
             </iframe>
-            <img src="ISP_1183.jpg" alt="Kappy's Image" class="small-image">
+                <img src="ISP_1183.jpg" alt="Kappy's Image" class="overlay-image">
+            </div>
         </div>
 
         <div class="footer">
@@ -145,17 +79,41 @@
     </div>
 
     <script>
-        // Function to display date and time
         function updateDateTime() {
             const now = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-            document.getElementById('date-time').innerText = now.toLocaleString('en-US', options);
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric', 
+                weekday: 'long', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit',
+                timeZoneName: 'short'
+            };
+            const formatter = new Intl.DateTimeFormat('en-US', options);
+            const parts = formatter.formatToParts(now);
+            
+            let dateTimeStr = '';
+            let timeZoneStr = '';
+            
+            parts.forEach(part => {
+                if (part.type !== 'timeZoneName') {
+                    dateTimeStr += part.value;
+                } else {
+                    timeZoneStr = part.value;
+                }
+            });
+
+            document.getElementById('date-time').innerText = dateTimeStr;
+            document.getElementById('time-zone').innerText = `Time Zone: ${timeZoneStr}`;
         }
 
-        // Function to fetch weather data
+        // Rest of the JavaScript functions remain the same
+
         function fetchWeather() {
-            const apiKey = 'f9b337b77657514a4f7a2c2072be6c14'; // Your OpenWeather API key
-            const city = document.getElementById('city-select').value; // Get selected city
+            const apiKey = 'f9b337b77657514a4f7a2c2072be6c14';
+            const city = document.getElementById('city-select').value;
             const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
             fetch(weatherUrl)
@@ -170,48 +128,63 @@
                     const weatherDescription = data.weather[0].description;
                     const weatherIcon = data.weather[0].icon;
 
+                    const weatherTranslations = {
+                        'clear sky': 'ciel dégagé',
+                        'few clouds': 'quelques nuages',
+                        'scattered clouds': 'nuages épars',
+                        'broken clouds': 'nuages fragmentés',
+                        'shower rain': 'averses',
+                        'rain': 'pluie',
+                        'thunderstorm': 'orage',
+                        'snow': 'neige',
+                        'mist': 'brume'
+                    };
+
+                    const frenchDescription = weatherTranslations[weatherDescription.toLowerCase()] || weatherDescription;
+
                     document.getElementById('climate').innerHTML = `
                         <img src="http://openweathermap.org/img/wn/${weatherIcon}@2x.png" alt="weather-icon">
-                        <span>Temperature in ${city}: ${temperature}°C</span><br>
-                        <span>Condition: ${weatherDescription}</span>
+                        <p>Temperature in ${city}: ${temperature}°C</p>
+                        <p>Condition: ${weatherDescription}</p>
+                        <p>Température à ${city}: ${temperature}°C</p>
+                        <p>Condition: ${frenchDescription}</p>
                     `;
                 })
                 .catch(error => {
-                    document.getElementById('climate').innerHTML = "Unable to fetch weather data.";
+                    document.getElementById('climate').innerHTML = "Unable to fetch weather data. / Impossible de récupérer les données météo.";
                     console.error("Error fetching weather data:", error);
                 });
         }
 
-        // Function to set the message based on selected language
         function setLanguage(lang) {
             let message = "";
             if (lang === 'en') {
-                message = "Good Morning! Have a blessed day!";
+                message = "Good morning Mom, may God bless your day with peace and happiness.";
             } else if (lang === 'fr') {
-                message = "Bonjour! Passez une bonne journée!";
+                message = " Bonjour Maman, que Dieu bénisse ta journée avec paix et bonheur.";
             } else if (lang === 'rw') {
-                message = "Muraho! Umunsi mwiza!";
+                message = " Mwaramutse Mama, Imana ikurinde uyu munsi iguhe amahoro n’ibyishimo.";
             }
             document.getElementById('message').innerText = message;
         }
 
-        // Function to set the Bible verse based on selected language
         function setBibleVerse(lang) {
             let verse = "";
             if (lang === 'en') {
-                verse = "Philippians 4:13 - I can do all things through Christ who strengthens me.";
+                verse = " Ephesians 5:10 - Finding out what is acceptable to the Lord.";
             } else if (lang === 'fr') {
-                verse = "Philippiens 4:13 - Je peux tout par celui qui me fortifie.";
+                verse = "Ephesians 5:10 - Examinez ce qui est agréable au Seigneur.";
             } else if (lang === 'rw') {
-                verse = "Abafilipi 4:13 - Nshobora gukora byose binyuze kuri Kristo unkomeza.";
+                verse = "Abefeso 5:10 - Mushakashake uko mwamenya ibyo Umwami ashima.";
             }
             document.getElementById('bible-verse').innerText = verse;
         }
 
-        // Update date and time and fetch weather on page load
         updateDateTime();
         fetchWeather();
-        setInterval(updateDateTime, 1000); // Update time every second
+        setInterval(updateDateTime, 1000);
+        setLanguage('en');
+        setBibleVerse('en');
     </script>
 </body>
 </html>
