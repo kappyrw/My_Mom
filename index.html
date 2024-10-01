@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <header class="animated-header">
-            <h1 class="glow-text">Good Morning, Mom!</h1>
+            <h1 class="glow-text">Bonjour, Mom!</h1>
             <div class="date-time" id="date-time"></div>
             <div id="time-zone"></div>
         </header>
@@ -63,7 +63,7 @@
             <h2 class="section-title">Inspiration for Today</h2>
             <div class="video-container">
                 <iframe 
-                src="https://www.youtube.com/embed/WsSZv-oAXe0" 
+                src="https://www.youtube.com/embed/KCIaAjLytVc" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                 allowfullscreen>
@@ -159,11 +159,11 @@
         function setLanguage(lang) {
             let message = "";
             if (lang === 'en') {
-                message = "Good morning Mom, may God bless your day with peace and happiness.";
+                message = "Good morning Mom, happy new month! May God bless this new month with peace, happiness, and success for you.";
             } else if (lang === 'fr') {
-                message = " Bonjour Maman, que Dieu bénisse ta journée avec paix et bonheur.";
+                message = " Bonjour Maman, joyeux nouveau mois ! Que Dieu bénisse ce nouveau mois avec paix, bonheur et succès pour toi.";
             } else if (lang === 'rw') {
-                message = " Mwaramutse Mama, Imana ikurinde uyu munsi iguhe amahoro n’ibyishimo.";
+                message = "Mwaramutse Mama, ukwezi gushya kuzaguhire! Imana iguhe umugisha muri uku kwezi gushya, hamwe n'amahoro, ibyishimo, n'intsinzi.";
             }
             document.getElementById('message').innerText = message;
         }
@@ -171,11 +171,12 @@
         function setBibleVerse(lang) {
             let verse = "";
             if (lang === 'en') {
-                verse = " Ephesians 5:10 - Finding out what is acceptable to the Lord.";
+               
+                verse ="Numbers 6:24-26 - May the Lord bless you and keep you; the Lord make His face shine on you and be gracious to you; the Lord turn His face toward you and give you peace."
             } else if (lang === 'fr') {
-                verse = "Ephesians 5:10 - Examinez ce qui est agréable au Seigneur.";
+                verse = "Nombres 6:24-26 -  Que l'Éternel te bénisse et te garde ! Que l'Éternel fasse luire Sa face sur toi et t'accorde Sa grâce ! Que l'Éternel tourne Sa face vers toi et te donne la paix.";
             } else if (lang === 'rw') {
-                verse = "Abefeso 5:10 - Mushakashake uko mwamenya ibyo Umwami ashima.";
+                verse = "Abefeso 5:10 - Uwiteka aguhe umugisha akurinde, Uwiteka akumurikishirize mu maso he akugirire neza, Uwiteka akurebe neza, aguhe amahoro.";
             }
             document.getElementById('bible-verse').innerText = verse;
         }
